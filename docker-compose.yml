@@ -1,0 +1,16 @@
+# YAML has many versions, Therefore it is necessary to write which version
+version: '3'
+
+# here we have to define services
+services:
+  # here you define the service name
+  frontend:
+    # notice that the space define the followship
+    # not we want to build image
+    build: ./frontend
+    ports:
+      - '4000:3000'
+  api:
+    build: ./api
+    ports:
+      - '5050:5050'
