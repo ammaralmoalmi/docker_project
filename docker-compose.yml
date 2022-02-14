@@ -10,7 +10,15 @@ services:
     build: ./frontend
     ports:
       - '4000:3000'
+    volumes:
+    # this mean the folder node_modules will not be override by our folder
+      # - /app/node_modules 
+      - ./frontend/src:/app/src
+    environment:
+      - CHOKIDAR_USEPOLLING=true
   api:
     build: ./api
     ports:
       - '5050:5050'
+    volumes:
+      - ./api:/app

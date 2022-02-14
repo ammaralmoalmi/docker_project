@@ -35,5 +35,6 @@ COPY . ./
 # now excute command for you container we decide which command node
 # no need to specify verion because only one image here
 # npm is the service , start is the service
-
+# RUN chown -R node:node /app/node_modules
+RUN sudo chmod -R 777 /app/node_modules
 CMD ["npm", "start"]
