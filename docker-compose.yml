@@ -20,7 +20,7 @@ services:
     restart: always
   api:
     build: ./api
-
+    # container_name: backend
     ports:
       - '5050:5050'
     volumes:
@@ -32,11 +32,15 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: very-strong-db-password
+    volumes:
+    # this mean the folder node_modules will not be override by our folder
+      # - /app/node_modules 
+      - mongodb_data:/data/db
   mongo-express:
     image: mongo-express
     restart: always
     ports:
-      - 8081:8081
+      - 8082:8081
     environment:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
@@ -44,3 +48,5 @@ services:
     # mean this container will not start only after mongo
     depends_on:
       - mongo  
+  volumes:
+    mongodb_data:
